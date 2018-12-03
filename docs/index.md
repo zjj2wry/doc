@@ -89,3 +89,12 @@ Switched to context "clever".
 ➜  ~ kubectl cluster-info
 Kubernetes master is running at https://192.168.21.161:6443
 ```
+
+### sleep container for debug container
+在容器的 podTemplate 加一个 sleep，然后在容器中手动执行启动程序 debug
+```
+command:
+- "/bin/sh"
+- "-c"
+- "sleep 5000"
+```
