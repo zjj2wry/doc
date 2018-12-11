@@ -22,31 +22,41 @@ Sun Dec  9 00:18:27 2018
 ```
 
 Fan: N/A是风扇转速，从0到100%之间变动，这个速度是计算机期望的风扇转速，实际情况下如果风扇堵转，可能打不到显示的转速。有的设备不会返回转速，因为它不依赖风扇冷却而是通过其他外设保持低温（比如我们实验室的服务器是常年放在空调房间里的）。 
+
 Temp: 是温度，单位摄氏度。 
-Perf: 是性能状态，从P0到P12，P0表示最大性能，P12表示状态最小性能。 
+
+Perf: 是性能状态，从P0到P12，P0表示最大性能，P12表示状态最小性能。
+
 Pwr: 能耗，上方的Persistence-M：是持续模式的状态，持续模式虽然耗能大，但是在新的GPU应用启动时，花费的时间更少，这里显示的是off的状态。
+
 Bus-Id: 是涉及GPU总线的东西，domain:bus:device.function 
+
 Display Active: 表示GPU的显示是否初始化。 
+
 Memory Usage: 显存使用率。 
+
 GPU-Util: GPU利用率。 
+
 Compute M: 计算模式。 
+
 Processes: 每个进程占用的显存使用率。
 
 显卡是由GPU和显存等组成的，显存和GPU的关系有点类似于内存和CPU的关系. 显存可以看成是空间，类似于内存。显存用于存放模型，数据
 显存越大，所能运行的网络也就越大。GPU计算单元类似于CPU中的核，用来进行数值计算。衡量计算量的单位是flop： the number of floating-point multiplication-adds，浮点数先乘后加算一个flop。计算能力越强大，速度越快。衡量计算能力的单位是flops: 每秒能执行的flop数量。
 
 ### 周期查看 gpu 监控信息
-```
+```bash
 watch -n 1 nvidia-smi
 ```
 
 ### python 工具查看 gpu 信息
-```
+```bash
 pip install gpustat
 ```
 
 ## k8s nvidia GPU device plugin
 ### 依赖 nvidia GPU runtime
+
 可以在有 gpu 的节点上使用 nvidia GPU runtime
 ```bash
 [root@gpu2]:~# cat /etc/docker/daemon.json
